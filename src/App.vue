@@ -5,11 +5,12 @@
     </div>
 
     <div class="flex-1">
-      <router-view />
+        <AllInOne />
     </div>
   </div>
 </template>
 
 <script setup>
 import ThemeGenerator from "./components/ThemeGenerator.vue";
+  import AllInOne from "./pages/AllInOne.vue";
 </script>

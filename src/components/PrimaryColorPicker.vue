@@ -27,7 +27,6 @@ onMounted(() => {
   <div class="p-6 bg-white rounded-2xl border shadow-sm space-y-5 relative">
 
     <div class="flex items-center gap-6">
-      <!-- HEX input -->
       <div class="flex flex-col">
         <p class="text-sm font-medium mb-2">Primary Color</p>
         <input
