@@ -47,66 +47,90 @@ defineProps({
             class="absolute inset-0 z-10"
             :style="{ background: dividerColor }"
           ></div>
-
-
-          <!-- White Card -->
           <div 
-            class="absolute left-4 right-4 bg-white rounded-2xl shadow-lg z-20 overflow-hidden"
-            style="top: 16px; height: 760px;"
+            class="absolute left-4 right-4 bg-white rounded-2xl shadow-lg z-20"
+            style="
+              top: 16px; 
+              height: 760px;
+              -webkit-mask-image: 
+                radial-gradient(circle 8px at 0% 68.4%, transparent 0, transparent 8px, black 8.5px),
+                radial-gradient(circle 4px at 3% 68.4%, transparent 0, transparent 4px, black 4.5px),
+                radial-gradient(circle 4px at 6% 68.4%, transparent 0, transparent 4px, black 4.5px),
+                radial-gradient(circle 4px at 9% 68.4%, transparent 0, transparent 4px, black 4.5px),
+                radial-gradient(circle 4px at 12% 68.4%, transparent 0, transparent 4px, black 4.5px),
+                radial-gradient(circle 4px at 15% 68.4%, transparent 0, transparent 4px, black 4.5px),
+                radial-gradient(circle 4px at 18% 68.4%, transparent 0, transparent 4px, black 4.5px),
+                radial-gradient(circle 4px at 21% 68.4%, transparent 0, transparent 4px, black 4.5px),
+                radial-gradient(circle 4px at 24% 68.4%, transparent 0, transparent 4px, black 4.5px),
+                radial-gradient(circle 4px at 27% 68.4%, transparent 0, transparent 4px, black 4.5px),
+                radial-gradient(circle 4px at 30% 68.4%, transparent 0, transparent 4px, black 4.5px),
+                radial-gradient(circle 4px at 33% 68.4%, transparent 0, transparent 4px, black 4.5px),
+                radial-gradient(circle 4px at 36% 68.4%, transparent 0, transparent 4px, black 4.5px),
+                radial-gradient(circle 4px at 39% 68.4%, transparent 0, transparent 4px, black 4.5px),
+                radial-gradient(circle 4px at 42% 68.4%, transparent 0, transparent 4px, black 4.5px),
+                radial-gradient(circle 4px at 45% 68.4%, transparent 0, transparent 4px, black 4.5px),
+                radial-gradient(circle 4px at 48% 68.4%, transparent 0, transparent 4px, black 4.5px),
+                radial-gradient(circle 4px at 51% 68.4%, transparent 0, transparent 4px, black 4.5px),
+                radial-gradient(circle 4px at 54% 68.4%, transparent 0, transparent 4px, black 4.5px),
+                radial-gradient(circle 4px at 57% 68.4%, transparent 0, transparent 4px, black 4.5px),
+                radial-gradient(circle 4px at 60% 68.4%, transparent 0, transparent 4px, black 4.5px),
+                radial-gradient(circle 4px at 63% 68.4%, transparent 0, transparent 4px, black 4.5px),
+                radial-gradient(circle 4px at 66% 68.4%, transparent 0, transparent 4px, black 4.5px),
+                radial-gradient(circle 4px at 69% 68.4%, transparent 0, transparent 4px, black 4.5px),
+                radial-gradient(circle 4px at 72% 68.4%, transparent 0, transparent 4px, black 4.5px),
+                radial-gradient(circle 4px at 75% 68.4%, transparent 0, transparent 4px, black 4.5px),
+                radial-gradient(circle 4px at 78% 68.4%, transparent 0, transparent 4px, black 4.5px),
+                radial-gradient(circle 4px at 81% 68.4%, transparent 0, transparent 4px, black 4.5px),
+                radial-gradient(circle 4px at 84% 68.4%, transparent 0, transparent 4px, black 4.5px),
+                radial-gradient(circle 4px at 87% 68.4%, transparent 0, transparent 4px, black 4.5px),
+                radial-gradient(circle 4px at 90% 68.4%, transparent 0, transparent 4px, black 4.5px),
+                radial-gradient(circle 4px at 93% 68.4%, transparent 0, transparent 4px, black 4.5px),
+                radial-gradient(circle 4px at 96% 68.4%, transparent 0, transparent 4px, black 4.5px),
+                radial-gradient(circle 8px at 100% 68.4%, transparent 0, transparent 8px, black 8.5px);
+              -webkit-mask-composite: source-in;
+              mask-image: 
+                radial-gradient(circle 8px at 0% 68.4%, transparent 0, transparent 8px, black 8.5px),
+                radial-gradient(circle 4px at 3% 68.4%, transparent 0, transparent 4px, black 4.5px),
+                radial-gradient(circle 4px at 6% 68.4%, transparent 0, transparent 4px, black 4.5px),
+                radial-gradient(circle 4px at 9% 68.4%, transparent 0, transparent 4px, black 4.5px),
+                radial-gradient(circle 4px at 12% 68.4%, transparent 0, transparent 4px, black 4.5px),
+                radial-gradient(circle 4px at 15% 68.4%, transparent 0, transparent 4px, black 4.5px),
+                radial-gradient(circle 4px at 18% 68.4%, transparent 0, transparent 4px, black 4.5px),
+                radial-gradient(circle 4px at 21% 68.4%, transparent 0, transparent 4px, black 4.5px),
+                radial-gradient(circle 4px at 24% 68.4%, transparent 0, transparent 4px, black 4.5px),
+                radial-gradient(circle 4px at 27% 68.4%, transparent 0, transparent 4px, black 4.5px),
+                radial-gradient(circle 4px at 30% 68.4%, transparent 0, transparent 4px, black 4.5px),
+                radial-gradient(circle 4px at 33% 68.4%, transparent 0, transparent 4px, black 4.5px),
+                radial-gradient(circle 4px at 36% 68.4%, transparent 0, transparent 4px, black 4.5px),
+                radial-gradient(circle 4px at 39% 68.4%, transparent 0, transparent 4px, black 4.5px),
+                radial-gradient(circle 4px at 42% 68.4%, transparent 0, transparent 4px, black 4.5px),
+                radial-gradient(circle 4px at 45% 68.4%, transparent 0, transparent 4px, black 4.5px),
+                radial-gradient(circle 4px at 48% 68.4%, transparent 0, transparent 4px, black 4.5px),
+                radial-gradient(circle 4px at 51% 68.4%, transparent 0, transparent 4px, black 4.5px),
+                radial-gradient(circle 4px at 54% 68.4%, transparent 0, transparent 4px, black 4.5px),
+                radial-gradient(circle 4px at 57% 68.4%, transparent 0, transparent 4px, black 4.5px),
+                radial-gradient(circle 4px at 60% 68.4%, transparent 0, transparent 4px, black 4.5px),
+                radial-gradient(circle 4px at 63% 68.4%, transparent 0, transparent 4px, black 4.5px),
+                radial-gradient(circle 4px at 66% 68.4%, transparent 0, transparent 4px, black 4.5px),
+                radial-gradient(circle 4px at 69% 68.4%, transparent 0, transparent 4px, black 4.5px),
+                radial-gradient(circle 4px at 72% 68.4%, transparent 0, transparent 4px, black 4.5px),
+                radial-gradient(circle 4px at 75% 68.4%, transparent 0, transparent 4px, black 4.5px),
+                radial-gradient(circle 4px at 78% 68.4%, transparent 0, transparent 4px, black 4.5px),
+                radial-gradient(circle 4px at 81% 68.4%, transparent 0, transparent 4px, black 4.5px),
+                radial-gradient(circle 4px at 84% 68.4%, transparent 0, transparent 4px, black 4.5px),
+                radial-gradient(circle 4px at 87% 68.4%, transparent 0, transparent 4px, black 4.5px),
+                radial-gradient(circle 4px at 90% 68.4%, transparent 0, transparent 4px, black 4.5px),
+                radial-gradient(circle 4px at 93% 68.4%, transparent 0, transparent 4px, black 4.5px),
+                radial-gradient(circle 4px at 96% 68.4%, transparent 0, transparent 4px, black 4.5px),
+                radial-gradient(circle 8px at 100% 68.4%, transparent 0, transparent 8px, black 8.5px);
+              mask-composite: intersect;
+            "
           >
-            <!-- Top white space (phía trên răng cưa) -->
             <div class="w-full" style="height: 520px;"></div>
-
-            <!-- Divider -->
-            <div class="relative h-[2px]" :style="{ backgroundColor: dividerColor }">
-
-              <!-- Perforation left -->
-              <div
-                class="absolute rounded-full"
-                :style="{
-                  width: '12px',
-                  height: '12px',
-                  left: '-6px',
-                  top: '-5px',
-                  backgroundColor: dividerColor,
-                  border: `2px solid ${dividerColor}`
-                }"
-              ></div>
-
-              <!-- Perforation right -->
-              <div
-                class="absolute rounded-full"
-                :style="{
-                  width: '12px',
-                  height: '12px',
-                  right: '-6px',
-                  top: '-5px',
-                  backgroundColor: dividerColor,
-                  border: `2px solid ${dividerColor}`
-                }"
-              ></div>
-
-              <!-- Serrated edge -->
-              <div class="absolute inset-0 flex items-center justify-center gap-[3px] px-3">
-                <div
-                  v-for="i in 40"
-                  :key="i"
-                  class="rounded-full"
-                  :style="{ 
-                    width: '6px', 
-                    height: '6px',
-                    backgroundColor: dividerColor
-                  }"
-                ></div>
-              </div>
-            </div>
-
-            <!-- Bottom white space (phía dưới răng cưa) -->
+            <div class="relative h-[2px]" :style="{ backgroundColor: dividerColor }"></div>
             <div class="w-full flex-1"></div>
 
           </div>
-
-          <!-- Text ngoài card trắng, trên background -->
           <div class="absolute left-4 right-4 z-30 flex flex-col items-center gap-2" style="top: 790px;">
             <p 
               class="text-[11px] tracking-wide"
