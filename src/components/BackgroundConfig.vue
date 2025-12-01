@@ -1,5 +1,5 @@
 <script setup>
-import { ref, computed, watch } from 'vue';
+import { ref, watch } from 'vue';
 
 const props = defineProps({
   type: {
@@ -7,12 +7,18 @@ const props = defineProps({
     default: 'Image'
   },
   imageUrl: String,
-  baseColor: String
+  baseColor: String,
+  dividerColor: String,
+  textColor: String,
+  hotlineColor: String
 });
 
-const emit = defineEmits(['update:type', 'file-change', 'update:baseColor']);
+const emit = defineEmits(['update:type', 'file-change', 'update:baseColor', 'update:dividerColor', 'update:textColor', 'update:hotlineColor']);
 
-const colorPicker = ref(null);
+const baseColorPicker = ref(null);
+const dividerColorPicker = ref(null);
+const textColorPicker = ref(null);
+const hotlineColorPicker = ref(null);
 const currentType = ref(props.type);
 
 // Sync local state with prop changes
@@ -88,7 +94,7 @@ const onDragOver = (e) => e.preventDefault();
         <div class="relative">
           <input
             type="color"
-            ref="colorPicker"
+            ref="baseColorPicker"
             class="absolute inset-0 opacity-0 cursor-pointer"
             :value="baseColor"
             @input="$emit('update:baseColor', $event.target.value)"
@@ -96,7 +102,85 @@ const onDragOver = (e) => e.preventDefault();
           <div
             class="h-10 w-40 rounded-lg border shadow-inner cursor-pointer"
             :style="{ background: baseColor }"
-            @click="colorPicker?.click()"
+            @click="baseColorPicker?.click()"
+          ></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Perforated Divider Color -->
+    <div class="space-y-2">
+      <p class="text-sm font-medium">Perforated Divider Color</p>
+      <div class="flex items-center gap-4">
+        <input
+          :value="dividerColor"
+          @input="$emit('update:dividerColor', $event.target.value)"
+          class="px-3 py-2 border border-gray-300 rounded-lg text-sm w-32 font-mono"
+        />
+        <div class="relative">
+          <input
+            type="color"
+            ref="dividerColorPicker"
+            class="absolute inset-0 opacity-0 cursor-pointer"
+            :value="dividerColor"
+            @input="$emit('update:dividerColor', $event.target.value)"
+          />
+          <div
+            class="h-10 w-40 rounded-lg border shadow-inner cursor-pointer"
+            :style="{ background: dividerColor }"
+            @click="dividerColorPicker?.click()"
+          ></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Text Color -->
+    <div class="space-y-2">
+      <p class="text-sm font-medium">Text Color - Bạn cần hỗ trợ hay liên hệ hotline</p>
+      <div class="flex items-center gap-4">
+        <input
+          :value="textColor"
+          @input="$emit('update:textColor', $event.target.value)"
+          class="px-3 py-2 border border-gray-300 rounded-lg text-sm w-32 font-mono"
+        />
+        <div class="relative">
+          <input
+            type="color"
+            ref="textColorPicker"
+            class="absolute inset-0 opacity-0 cursor-pointer"
+            :value="textColor"
+            @input="$emit('update:textColor', $event.target.value)"
+          />
+          <div
+            class="h-10 w-40 rounded-lg border shadow-inner cursor-pointer"
+            :style="{ background: textColor }"
+            @click="textColorPicker?.click()"
+          ></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Hotline Color -->
+    <div class="space-y-2">
+      <p class="text-sm font-medium">Hotline Color</p>
+      <div class="flex items-center gap-4">
+        <input
+          :value="hotlineColor"
+          @input="$emit('update:hotlineColor', $event.target.value)"
+          class="px-3 py-2 border border-gray-300 rounded-lg text-sm w-32 font-mono"
+        />
+        <div class="relative">
+          <input
+            type="color"
+            ref="hotlineColorPicker"
+            class="absolute inset-0 opacity-0 cursor-pointer"
+            :value="hotlineColor"
+            @input="$emit('update:hotlineColor', $event.target.value)"
+          />
+          <div
+            class="h-10 w-40 rounded-lg border shadow-inner cursor-pointer"
+            :style="{ background: hotlineColor }"
+            @click="hotlineColorPicker?.click()"
           ></div>
         </div>
       </div>

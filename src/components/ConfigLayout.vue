@@ -163,9 +163,6 @@ const importCampaign = () => {
         const blob = await response.blob();
         return new File([blob], filename, { type: blob.type });
       };
-      // ============================================
-      // APPLY COLORS
-      // ============================================
       let primaryColorValue = null;
       if (schema.colors?.primary) {
         // Use primary 500 to generate all shades via setPrimary

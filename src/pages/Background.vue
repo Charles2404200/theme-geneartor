@@ -8,23 +8,22 @@ import BackgroundPreview from "@/components/BackgroundPreview.vue";
 
 const props = defineProps({
   onBackgroundChange: Function,
-  backgroundState: Object  // { type, fileKey, file, preview }
+  backgroundState: Object
 });
 
-// Initialize from backgroundState first, then fallback to defaults
 const type = ref(props.backgroundState?.type?.charAt(0).toUpperCase() + props.backgroundState?.type?.slice(1).toLowerCase() || "Image");
 const imageUrl = ref(props.backgroundState?.preview || "");   // preview only (blob URL)
 const imageFile = ref(props.backgroundState?.file || null);
 const baseColor = ref("#F1EADA");
 const shades = ref(generateShades(baseColor.value));
+const dividerColor = ref("#A2B6CD");
+const textColor = ref("#B9804E");
+const hotlineColor = ref("#101010");
 
-// Khi user upload file
 const onFileChange = (file) => {
   if (!file) return;
 
   imageFile.value = file;
-
-  // chỉ preview — KHÔNG gửi blob cho schema
   const blobUrl = URL.createObjectURL(file);
   imageUrl.value = blobUrl;
 
@@ -71,20 +70,27 @@ watch(() => props.backgroundState?.type, (newType) => {
 <template>
   <div class="page-background">
     <div class="grid grid-cols-2 gap-10 items-start">
-
-      <!-- CONFIG SECTION -->
       <BackgroundConfig 
         :type="type"
         :image-url="imageUrl"
         :base-color="baseColor"
+        :divider-color="dividerColor"
+        :text-color="textColor"
+        :hotline-color="hotlineColor"
         @update:type="type = $event"
         @file-change="onFileChange"
         @update:baseColor="baseColor = $event"
+        @update:dividerColor="dividerColor = $event"
+        @update:textColor="textColor = $event"
+        @update:hotlineColor="hotlineColor = $event"
       />
       <BackgroundPreview
         :type="type"
         :image-url="imageUrl"
         :base-color="baseColor"
+        :divider-color="dividerColor"
+        :text-color="textColor"
+        :hotline-color="hotlineColor"
       />
 
     </div>

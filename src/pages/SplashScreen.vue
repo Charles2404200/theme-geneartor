@@ -32,7 +32,6 @@ const processFile = (fileObj) => {
   reader.onload = (e) => {
     const previewUrl = e.target.result;
     preview.value = previewUrl;
-    // Pass both file and preview to store in state
     if (typeof props.onSplashChange === 'function') {
       props.onSplashChange({ file: fileObj, preview: previewUrl });
     }
@@ -44,14 +43,10 @@ const processFile = (fileObj) => {
 <template>
   <div class="page-splash">
     <div class="grid grid-cols-2 gap-20 items-start pt-4">
-
-      <!-- UPLOAD SECTION -->
       <SplashUpload 
         :error="error"
         @file-upload="processFile"
       />
-
-      <!-- PREVIEW SECTION -->
       <SplashPreview :preview="preview" />
 
     </div>

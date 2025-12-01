@@ -4,7 +4,7 @@ import TierCard from '@/components/TierCard.vue';
 
 const props = defineProps({
   onMemberChange: Function,
-  memberCardState: Object  // { FOODBOOK, FA, SOL, LA, ITL, ITLPLUS }
+  memberCardState: Object 
 });
 
 const tiers = [

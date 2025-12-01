@@ -15,7 +15,7 @@ import OrderSummary from "@/components/OrderSummary.vue";
 import BottomNav from "@/components/BottomNav.vue";
 
 const props = defineProps({
-  primaryColor: String  // from import
+  primaryColor: String
 });
 
 const baseColor = ref(props.primaryColor || "#B9804E");
@@ -71,19 +71,10 @@ watch(() => props.primaryColor, (newColor) => {
             <div class="device-sensors"></div>
 
             <div class="device-content bg-[#f7f7fa] overflow-y-auto pb-20">
-              
-              <!-- STATUS BAR -->
               <StatusBar :shades="shades" />
-
-              <!-- CATEGORY TABS -->
               <CategoryTabs :shades="shades" />
-
-              <!-- ORDER SUMMARY -->
               <OrderSummary :shades="shades" />
-
-              <!-- BOTTOM NAV -->
               <BottomNav :shades="shades" :home-tab="HomeTab" :order-tab="OrderTab" :offer-tab="OfferTab" :other-tab="OtherTab" :qr-tab="QrTab" />
-
             </div>
 
             <div class="device-btns"></div>
