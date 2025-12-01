@@ -49,12 +49,13 @@ defineProps({
           ></div>
 
 
+          <!-- White Card -->
           <div 
             class="absolute left-4 right-4 bg-white rounded-2xl shadow-lg z-20 overflow-hidden"
-            style="top: 16px; bottom: 16px;"
+            style="top: 16px; height: 760px;"
           >
-            <!-- Top white image placeholder (≈68% height) -->
-            <div class="w-full" style="height: 68%;"></div>
+            <!-- Top white space (phía trên răng cưa) -->
+            <div class="w-full" style="height: 520px;"></div>
 
             <!-- Divider -->
             <div class="relative h-[2px]" :style="{ backgroundColor: dividerColor }">
@@ -100,25 +101,29 @@ defineProps({
               </div>
             </div>
 
-            <!-- Bottom text zone -->
-            <div class="flex flex-col items-center justify-center py-6 px-4">
-              <p 
-                class="text-[11px] mb-2 tracking-wide"
-                :style="{ color: textColor }"
-              >
-                Bạn cần hỗ trợ hãy liên hệ hotline
-              </p>
-
-              <p 
-                class="text-base font-semibold flex items-center gap-1.5"
-                :style="{ color: hotlineColor }"
-              >
-                <span class="text-lg">📞</span>
-                <span>1900 3013</span>
-              </p>
-            </div>
+            <!-- Bottom white space (phía dưới răng cưa) -->
+            <div class="w-full flex-1"></div>
 
           </div>
+
+          <!-- Text ngoài card trắng, trên background -->
+          <div class="absolute left-4 right-4 z-30 flex flex-col items-center gap-2" style="top: 790px;">
+            <p 
+              class="text-[11px] tracking-wide"
+              :style="{ color: textColor }"
+            >
+              Bạn cần hỗ trợ hãy liên hệ hotline
+            </p>
+
+            <p 
+              class="text-base font-semibold flex items-center gap-1.5"
+              :style="{ color: hotlineColor }"
+            >
+              <span class="text-lg">📞</span>
+              <span>1900 3013</span>
+            </p>
+          </div>
+
         </div>
 
         <div class="device-stripe"></div>
