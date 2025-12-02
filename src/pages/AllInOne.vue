@@ -9,7 +9,7 @@ import MemberCard from './MemberCard.vue';
 
 const currentTab = ref('color');
 
-const primaryColor = ref(null);  // Store imported primary color
+const primaryColor = ref(null); 
 const splash = ref({
   file: null,
   preview: null
@@ -18,7 +18,11 @@ const background = ref({
   type: null,
   fileKey: null,
   file: null,
-  preview: null
+  preview: null,
+  baseColor: '#F1EADA',
+  dividerColor: '#A2B6CD',
+  textColor: '#B9804E',
+  hotlineColor: '#101010'
 });
 const banner = ref({
   file: null,
@@ -34,7 +38,6 @@ const memberCard = ref({
   ITLPLUS: null
 });
 
-// Switch tab -> load component
 const currentComponent = computed(() => {
   switch (currentTab.value) {
     case 'color': return Home;

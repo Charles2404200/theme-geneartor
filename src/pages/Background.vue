@@ -12,13 +12,13 @@ const props = defineProps({
 });
 
 const type = ref(props.backgroundState?.type?.charAt(0).toUpperCase() + props.backgroundState?.type?.slice(1).toLowerCase() || "Image");
-const imageUrl = ref(props.backgroundState?.preview || "");   // preview only (blob URL)
+const imageUrl = ref(props.backgroundState?.preview || "");
 const imageFile = ref(props.backgroundState?.file || null);
-const baseColor = ref("#F1EADA");
+const baseColor = ref(props.backgroundState?.baseColor || "#F1EADA");
 const shades = ref(generateShades(baseColor.value));
-const dividerColor = ref("#A2B6CD");
-const textColor = ref("#B9804E");
-const hotlineColor = ref("#101010");
+const dividerColor = ref(props.backgroundState?.dividerColor || "#A2B6CD");
+const textColor = ref(props.backgroundState?.textColor || "#B9804E");
+const hotlineColor = ref(props.backgroundState?.hotlineColor || "#101010");
 
 const onFileChange = (file) => {
   if (!file) return;
@@ -30,7 +30,6 @@ const onFileChange = (file) => {
   notifyChange();
 };
 
-// Gửi schema lên parent
 const notifyChange = () => {
   if (typeof props.onBackgroundChange !== 'function') return;
 
@@ -40,6 +39,10 @@ const notifyChange = () => {
     fileKey: key,
     preview: imageUrl.value,
     file: imageFile.value,
+    baseColor: baseColor.value,
+    dividerColor: dividerColor.value,
+    textColor: textColor.value,
+    hotlineColor: hotlineColor.value
   });
 };
 
@@ -54,7 +57,11 @@ const applyColor = (hex) => {
     type: "color",
     value: hex,
     fileKey: null,
-    file: null
+    file: null,
+    baseColor: baseColor.value,
+    dividerColor: dividerColor.value,
+    textColor: textColor.value,
+    hotlineColor: hotlineColor.value
   });
 };
 
@@ -65,6 +72,26 @@ watch(() => props.backgroundState?.type, (newType) => {
     type.value = newType.charAt(0).toUpperCase() + newType.slice(1).toLowerCase();
   }
 }, { deep: true });
+
+// Sync colors when backgroundState changes
+watch(() => props.backgroundState?.baseColor, (newColor) => {
+  if (newColor) baseColor.value = newColor;
+}, { immediate: true });
+
+watch(() => props.backgroundState?.dividerColor, (newColor) => {
+  if (newColor) dividerColor.value = newColor;
+}, { immediate: true });
+
+watch(() => props.backgroundState?.textColor, (newColor) => {
+  if (newColor) textColor.value = newColor;
+}, { immediate: true });
+
+watch(() => props.backgroundState?.hotlineColor, (newColor) => {
+  if (newColor) hotlineColor.value = newColor;
+}, { immediate: true });
+
+// Notify when any color changes
+watch([dividerColor, textColor, hotlineColor], () => notifyChange());
 </script>
 
 <template>

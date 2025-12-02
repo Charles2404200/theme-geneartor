@@ -20,8 +20,6 @@ const backgroundState = ref({
   file: props.background?.file ?? null,
   preview: props.background?.preview ?? null
 });
-
-// Hàm để child update state
 const updateBackground = (payload) => {
   backgroundState.value = {
     ...backgroundState.value,
@@ -30,11 +28,8 @@ const updateBackground = (payload) => {
 };
 
 
-// emit thêm import-schema
 const emit = defineEmits(['navigate', 'import-schema']);
 const fileStore = ref({});
-
-// Navigation
 const isActive = (tab) => props.activeTab === tab;
 const navigate = (tab) => emit('navigate', tab);
 
@@ -50,7 +45,6 @@ const exportCampaign = async () => {
     if (level === 500 && val) primaryColor500 = val;
   });
 
-  // Helper to convert file to base64
   const fileToBase64 = (file) => {
     return new Promise((resolve) => {
       const reader = new FileReader();
@@ -66,21 +60,36 @@ const exportCampaign = async () => {
 
   let background = undefined;
 
-  if (props.background) {
+  if (props.background && props.background.type) {
     const bg = props.background;
 
-    if (bg.type === 'image' && bg.file) {
-      background = {
-        type: 'image',
-        value: await fileToBase64(bg.file)
-      };
+    if (bg.type === 'image') {
+      if (bg.file) {
+        background = {
+          type: 'image',
+          value: await fileToBase64(bg.file),
+          baseColor: bg.baseColor,
+          dividerColor: bg.dividerColor,
+          textColor: bg.textColor,
+          hotlineColor: bg.hotlineColor
+        };
+      }
     } else if (bg.type === 'color') {
+      // Ensure we have a valid color value
+      const colorValue = bg.value || primaryColor500;
       background = {
         type: 'color',
-        value: bg.value || primaryColor500
+        value: colorValue,
+        baseColor: bg.baseColor,
+        dividerColor: bg.dividerColor,
+        textColor: bg.textColor,
+        hotlineColor: bg.hotlineColor
       };
     }
-  } else {
+  }
+
+  // Fallback to primary color if no background selected
+  if (!background) {
     background = {
       type: 'color',
       value: primaryColor500
@@ -119,10 +128,7 @@ const exportCampaign = async () => {
     },
     memberCard
   };
-
-  // Remove undefined values
   if (!campaign.splashScreen) delete campaign.splashScreen;
-  if (!campaign.background?.value) delete campaign.background;
   if (!campaign.home?.topBanner) delete campaign.home;
   if (!campaign.memberCard) delete campaign.memberCard;
 
@@ -155,7 +161,7 @@ const importCampaign = () => {
       const jsonText = await file.text();
       const schema = JSON.parse(jsonText);
 
-      console.log("📥 IMPORTED SCHEMA:", schema);
+      console.log(" IMPORTED SCHEMA:", schema);
 
       // Helper to convert base64 data URI to File
       const base64ToFile = async (dataUri, filename) => {
@@ -196,14 +202,22 @@ const importCampaign = () => {
             type: 'image',
             value: schema.background.value,
             file: await base64ToFile(schema.background.value, 'background.webp'),
-            preview: schema.background.value
+            preview: schema.background.value,
+            baseColor: schema.background.baseColor || '#F1EADA',
+            dividerColor: schema.background.dividerColor || '#A2B6CD',
+            textColor: schema.background.textColor || '#B9804E',
+            hotlineColor: schema.background.hotlineColor || '#101010'
           };
         } else if (schema.background.type === 'color') {
           importedData.background = {
             type: 'color',
             value: schema.background.value,
             file: null,
-            preview: null
+            preview: null,
+            baseColor: schema.background.baseColor || '#F1EADA',
+            dividerColor: schema.background.dividerColor || '#A2B6CD',
+            textColor: schema.background.textColor || '#B9804E',
+            hotlineColor: schema.background.hotlineColor || '#101010'
           };
         }
       }
