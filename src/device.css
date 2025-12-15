@@ -203,7 +203,7 @@
 }
 
 .nav-item-active {
-  background: rgba(0, 0, 0, 0.06); /* hoặc dùng shades[100] nếu muốn theo theme */
+  background: rgba(0, 0, 0, 0.06);
   padding: 8px 14px;
   border-radius: 12px; 
   display: flex;

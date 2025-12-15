@@ -359,6 +359,30 @@ const importCampaign = () => {
           Member Card
         </button>
 
+        <button 
+          @click="navigate('order')"
+          :class="[
+            'pb-3 transition',
+            isActive('order')
+              ? 'border-b-2 border-[#c28c51] font-medium text-[#c28c51]'
+              : 'text-gray-400 hover:text-black'
+          ]"
+        >
+          Order Detail
+        </button>
+
+        <button 
+          @click="navigate('qrcode')"
+          :class="[
+            'pb-3 transition',
+            isActive('qrcode')
+              ? 'border-b-2 border-[#c28c51] font-medium text-[#c28c51]'
+              : 'text-gray-400 hover:text-black'
+          ]"
+        >
+          QR Code
+        </button>
+
       </div>
     </div>
 

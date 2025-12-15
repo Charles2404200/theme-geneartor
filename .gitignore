@@ -22,3 +22,19 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# Directus
+uploads/
+extensions/
+
+# Docker
+.docker/
+
+# OS
+.DS_Store
+Thumbs.db
