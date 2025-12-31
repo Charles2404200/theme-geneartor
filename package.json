@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@tailwindcss/postcss": "^4.1.17",
+    "cropperjs": "^2.1.0",
     "directus": "^11.13.4",
     "framework7": "^8.3.3",
     "framework7-icons": "^5.0.5",

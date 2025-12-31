@@ -10,7 +10,8 @@ const props = defineProps({
   splash: Object,
   background: Object,
   banner: Object,
-  memberCard: Object
+  memberCard: Object,
+  appIcon: Object
 });
 
 const backgroundState = ref({
@@ -126,11 +127,39 @@ const exportCampaign = async () => {
     home: {
       topBanner: banner
     },
-    memberCard
+    memberCard,
+    appIcon: undefined
   };
+
+  // Build appIcon data if available
+  if (props.appIcon?.title) {
+    const appIconData = {
+      title: props.appIcon.title,
+      ios: {},
+      android: {}
+    };
+
+    if (props.appIcon.ios?.background?.file) {
+      appIconData.ios.background = await fileToBase64(props.appIcon.ios.background.file);
+    }
+
+    if (props.appIcon.android?.background?.file) {
+      appIconData.android.background = await fileToBase64(props.appIcon.android.background.file);
+    }
+
+    if (props.appIcon.android?.logo?.file) {
+      appIconData.android.logo = await fileToBase64(props.appIcon.android.logo.file);
+    }
+
+    if (appIconData.ios.background || appIconData.android.background || appIconData.android.logo) {
+      campaign.appIcon = appIconData;
+    }
+  }
+
   if (!campaign.splashScreen) delete campaign.splashScreen;
   if (!campaign.home?.topBanner) delete campaign.home;
   if (!campaign.memberCard) delete campaign.memberCard;
+  if (!campaign.appIcon) delete campaign.appIcon;
 
   const blob = new Blob([JSON.stringify(campaign, null, 2)], {
     type: "application/json;charset=utf-8;"
@@ -246,6 +275,42 @@ const importCampaign = () => {
           if (base64) {
             importedData.memberCard[tier].file = await base64ToFile(base64, `${tier}.webp`);
           }
+        }
+      }
+
+      // App icon
+      const appIcon = schema.appIcon;
+      if (appIcon) {
+        importedData.appIcon = {
+          title: appIcon.title || '',
+          ios: {
+            background: { file: null, preview: null }
+          },
+          android: {
+            background: { file: null, preview: null },
+            logo: { file: null, preview: null }
+          }
+        };
+
+        if (appIcon.ios?.background) {
+          importedData.appIcon.ios.background = {
+            file: await base64ToFile(appIcon.ios.background, 'ios-background.png'),
+            preview: appIcon.ios.background
+          };
+        }
+
+        if (appIcon.android?.background) {
+          importedData.appIcon.android.background = {
+            file: await base64ToFile(appIcon.android.background, 'android-background.png'),
+            preview: appIcon.android.background
+          };
+        }
+
+        if (appIcon.android?.logo) {
+          importedData.appIcon.android.logo = {
+            file: await base64ToFile(appIcon.android.logo, 'android-logo.png'),
+            preview: appIcon.android.logo
+          };
         }
       }
 
@@ -381,6 +446,18 @@ const importCampaign = () => {
           ]"
         >
           QR Code
+        </button>
+
+        <button 
+          @click="navigate('app-icon')"
+          :class="[
+            'pb-3 transition',
+            isActive('app-icon')
+              ? 'border-b-2 border-[#c28c51] font-medium text-[#c28c51]'
+              : 'text-gray-400 hover:text-black'
+          ]"
+        >
+          App Icon
         </button>
 
       </div>

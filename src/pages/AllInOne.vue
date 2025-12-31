@@ -9,6 +9,7 @@ import HomeTopBanner from './HomeTopBanner.vue';
 import MemberCard from './MemberCard.vue';
 import QRCodeTab from '@/components/qrcode/QRCodeTab.vue';
 import OrderDetailTab from '@/components/order-detail/OrderDetailTab.vue';
+import AppIconTab from '@/components/AppIconTab.vue';
 
 /* =======================
    TAB STATE
@@ -73,6 +74,20 @@ const memberCard = ref({
 });
 
 /* =======================
+   APP ICON
+======================= */
+const appIcon = ref({
+  title: '',
+  ios: {
+    background: { file: null, preview: null }
+  },
+  android: {
+    background: { file: null, preview: null },
+    logo: { file: null, preview: null }
+  }
+});
+
+/* =======================
    TAB -> COMPONENT
 ======================= */
 const currentComponent = computed(() => {
@@ -84,6 +99,7 @@ const currentComponent = computed(() => {
     case 'member': return MemberCard;
     case 'order': return OrderDetailTab;
     case 'qrcode': return QRCodeTab;
+    case 'app-icon': return AppIconTab;
     default: return Home;
   }
 });
@@ -131,6 +147,13 @@ const onQRCodeChange = (value) => {
   };
 };
 
+const onAppIconChange = (value) => {
+  appIcon.value = {
+    ...appIcon.value,
+    ...value
+  };
+};
+
 /* =======================
    IMPORT SCHEMA
 ======================= */
@@ -165,6 +188,10 @@ const handleImport = (importedData) => {
     });
   }
 
+  if (importedData.appIcon) {
+    appIcon.value = importedData.appIcon;
+  }
+
   currentTab.value = 'color';
 };
 </script>
@@ -181,6 +208,7 @@ const handleImport = (importedData) => {
       :banner="banner"
       :member-card="memberCard"
       :qrcode="qrCode"
+      :app-icon="appIcon"
     >
 
       <component
@@ -192,6 +220,7 @@ const handleImport = (importedData) => {
         :on-banner-change="onBannerChange"
         :on-member-change="onMemberChange"
         :on-qrcode-change="onQRCodeChange"
+        :on-app-icon-change="onAppIconChange"
 
         :backgroundState="background"
         :splashPreview="splash.preview"
@@ -199,6 +228,7 @@ const handleImport = (importedData) => {
         :memberCardState="memberCard"
         :primaryColor="primaryColor"
         :qrCodeState="qrCode"
+        :appIconState="appIcon"
       />
 
     </ConfigLayout>
